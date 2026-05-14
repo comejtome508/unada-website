@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNADA — Live somewhere that feels like you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #F2C94C;
+      --forest: #0D7A52;
+      --deep: #0D2B1E;
+      --pale-sun: #FAECC8;
+      --meadow: #A8D4BE;
+      --peach: #E8C4A0;
+      --offwhite: #F7F4EE;
+      --font-display: 'Nunito', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--offwhite);
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--offwhite);
+      border-bottom: 1px solid rgba(13, 43, 30, 0.08);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .logo-lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .logo-wordmark {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 4px;
+      color: var(--deep);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .logo-wordmark::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--forest);
+      border-radius: 3px;
+    }
+
+    .logo-sub {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--forest);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--deep);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-cta {
+      background: var(--forest);
+      color: var(--offwhite) !important;
+      opacity: 1 !important;
+      padding: 8px 20px;
+      border-radius: 40px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--yellow);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(13, 43, 30, 0.06);
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .hero-bg-circle2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(13, 43, 30, 0.04);
+      left: 40%;
+      bottom: -80px;
+      pointer-events: none;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(42px, 5vw, 64px);
+      line-height: 1.1;
+      color: var(--deep);
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-headline em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--forest);
+      border-radius: 3px;
+      opacity: 0.35;
+    }
+
+    .hero-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--deep);
+      opacity: 0.75;
+      max-width: 440px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      animation: fadeUp 0.8s 0.65s ease both;
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      color: var(--offwhite);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--deep);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: var(--deep);
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .btn-ghost:hover {
+      opacity: 1;
+    }
+
+    .btn-ghost svg {
+      transition: transform 0.2s;
+    }
+
+    .btn-ghost:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Hero visual panel */
+    .hero-visual {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      animation: fadeUp 0.8s 0.4s ease both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-stack {
+      position: relative;
+      width: 340px;
+      height: 440px;
+    }
+
+    .hero-card {
+      position: absolute;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .card-main {
+      width: 300px;
+      height: 380px;
+      top: 30px;
+      right: 0;
+      background: var(--deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(13, 43, 30, 0.25);
+    }
+
+    .card-main-photo {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #2A4A3A 0%, #0D2B1E 100%);
+      opacity: 0.9;
+    }
+
+    /* Lifestyle scene illustration inside card */
+    .scene-illustration {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .scene-window {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 120px;
+      height: 80px;
+      border: 2px solid rgba(242, 201, 76, 0.3);
+      border-radius: 4px;
+    }
+
+    .scene-window::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      background: linear-gradient(180deg, rgba(242, 201, 76, 0.2) 0%, rgba(168, 212, 190, 0.1) 100%);
+      border-radius: 2px;
+    }
+
+    .scene-plant {
+      position: absolute;
+      bottom: 100px;
+      left: 28px;
+      width: 28px;
+      height: 50px;
+    }
+
+    .scene-plant::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 30px;
+      background: var(--meadow);
+      opacity: 0.6;
+      border-radius: 2px;
+    }
+
+    .scene-plant::after {
+      content: '';
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--forest);
+      border-radius: 50% 50% 50% 10%;
+      opacity: 0.7;
+    }
+
+    .scene-coffee {
+      position: absolute;
+      top: 100px;
+      left: 40px;
+      width: 20px;
+      height: 14px;
+      background: rgba(232, 196, 160, 0.4);
+      border-radius: 4px 4px 2px 2px;
+    }
+
+    .card-main-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--deep);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card-address {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--offwhite);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .card-detail {
+      font-size: 13px;
+      color: var(--meadow);
+      opacity: 0.8;
+    }
+
+    .card-float {
+      width: 200px;
+      height: 120px;
+      left: 0;
+      top: 0;
+      background: var(--offwhite);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 32px rgba(13, 43, 30, 0.12);
+    }
+
+    .card-float-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.7;
+    }
+
+    .card-float-stat {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    .card-float-sub {
+      font-size: 12px;
+      color: var(--deep);
+      opacity: 0.5;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .section {
+      padding: 100px 48px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 16px;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.2;
+      color: var(--deep);
+      max-width: 540px;
+    }
+
+    .how-it-works {
+      background: var(--offwhite);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+
+    .how-step {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 32px;
+      border: 1px solid rgba(13, 43, 30, 0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .how-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(13, 43, 30, 0.1);
+    }
+
+    .how-step-number {
+      font-family: var(--font-display);
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .how-step-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+
+    .how-step-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--deep);
+      opacity: 0.65;
+    }
+
+    .how-step-icon {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      width: 40px;
+      height: 40px;
+      background: var(--pale-sun);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== BRAND PROMISE ===== */
+    .brand-promise {
+      background: var(--deep);
+      padding: 100px 48px;
+      text-align: center;
+    }
+
+    .brand-promise-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1.15;
+      max-width: 760px;
+      margin: 0 auto 28px;
+    }
+
+    .brand-promise-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--meadow);
+      max-width: 540px;
+      margin: 0 auto 48px;
+      opacity: 0.85;
+    }
+
+    .brand-promise-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--deep);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-yellow:hover {
+      background: var(--pale-sun);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-light {
+      color: var(--meadow);
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      border: 1px solid rgba(168, 212, 190, 0.3);
+      padding: 13px 28px;
+      border-radius: 40px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline-light:hover {
+      border-color: var(--meadow);
+      color: var(--offwhite);
+    }
+
+    /* ===== LEAD INTELLIGENCE TEASER ===== */
+    .intelligence-section {
+      background: var(--pale-sun);
+      padding: 100px 48px;
+    }
+
+    .intel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .intel-mockup {
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(13, 43, 30, 0.1);
+      border: 1px solid rgba(13, 43, 30, 0.05);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .intel-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+    }
+
+    .mockup-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(13, 43, 30, 0.06);
+    }
+
+    .mockup-client-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--deep);
+    }
+
+    .mockup-badge {
+      background: var(--meadow);
+      color: var(--deep);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .mockup-progress {
+      margin-bottom: 24px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--deep);
+      opacity: 0.5;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(13, 43, 30, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--forest);
+      border-radius: 3px;
+      width: 65%;
+    }
+
+    .mockup-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      background: var(--pale-sun);
+      color: var(--deep);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .chip.active {
+      background: var(--forest);
+      color: var(--offwhite);
+    }
+
+    .mockup-ai-panel {
+      background: var(--deep);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .ai-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+
+    .ai-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--meadow);
+      opacity: 0.85;
+    }
+
+    .ai-highlight {
+      color: var(--yellow);
+      font-weight: 500;
+    }
+
+    .intel-content .section-headline {
+      margin-bottom: 24px;
+    }
+
+    .intel-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--deep);
+      opacity: 0.7;
+      margin-bottom: 32px;
+    }
+
+    .section-body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--deep);
+      opacity: 0.65;
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .intel-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .intel-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--deep);
+      opacity: 0.75;
+    }
+
+    .feature-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--forest);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ===== NEIGHBORHOOD SECTION ===== */
+    .neighborhoods {
+      background: var(--offwhite);
+      padding: 100px 48px;
+    }
+
+    .neigh-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .neigh-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 240px 200px;
+      gap: 16px;
+    }
+
+    .neigh-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--deep);
+      transition: transform 0.25s;
+    }
+
+    .neigh-card:hover {
+      transform: scale(1.01);
+    }
+
+    .neigh-card.span-col {
+      grid-row: span 2;
+    }
+
+    .neigh-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(13, 43, 30, 0.85) 0%, transparent 60%);
+    }
+
+    .neigh-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2A4A3A 0%, #0D2B1E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Simple illustrated neighborhood scenes */
+    .scene-street {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scene-street::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: rgba(168, 212, 190, 0.1);
+    }
+
+    .neigh-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--offwhite);
+      margin-bottom: 4px;
+    }
+
+    .neigh-sub {
+      font-size: 13px;
+      color: var(--meadow);
+      opacity: 0.8;
+    }
+
+    /* Color variety for neighborhood cards */
+    .neigh-card:nth-child(1) .neigh-bg {
+      background: linear-gradient(135deg, #2A4A3A 0%, #0D2B1E 100%);
+    }
+
+    .neigh-card:nth-child(2) .neigh-bg {
+      background: linear-gradient(135deg, #3D5A3E 0%, #1A3020 100%);
+    }
+
+    .neigh-card:nth-child(3) .neigh-bg {
+      background: linear-gradient(135deg, #3A3020 0%, #201A0D 100%);
+    }
+
+    .neigh-card:nth-child(4) .neigh-bg {
+      background: linear-gradient(135deg, #204030 0%, #0F2518 100%);
+    }
+
+    .neigh-card:nth-child(5) .neigh-bg {
+      background: linear-gradient(135deg, #352A1A 0%, #1A1408 100%);
+    }
+
+    /* Decorative dots/elements in neigh cards */
+    .deco-lines {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      opacity: 0.15;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      background: var(--yellow);
+      padding: 100px 48px;
+    }
+
+    .testimonial-carousel-wrapper {
+      position: relative;
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-carousel {
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .testimonial-card {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+
+    .carousel-btn {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(13, 43, 30, 0.25);
+      background: rgba(13, 43, 30, 0.06);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(13, 43, 30, 0.15);
+      border-color: rgba(13, 43, 30, 0.4);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .carousel-footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(13, 43, 30, 0.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--deep);
+      transform: scale(1.25);
+    }
+
+    .google-review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .google-review-header svg {
+      flex-shrink: 0;
+    }
+
+    .google-rating {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    .google-stars {
+      color: #F2C94C;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .google-count {
+      font-size: 14px;
+      color: var(--deep);
+      opacity: 0.6;
+    }
+
+    .review-stars {
+      color: #F2C94C;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .google-review-footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .google-review-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--deep);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .google-review-link:hover {
+      opacity: 1;
+    }
+
+    .google-review-link svg {
+      transition: transform 0.2s;
+    }
+
+    .google-review-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .testimonial-card {
+      background: rgba(13, 43, 30, 0.06);
+      border-radius: 20px;
+      padding: 36px;
+      border: 1px solid rgba(13, 43, 30, 0.1);
+      transition: background 0.2s;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(13, 43, 30, 0.1);
+    }
+
+    .testimonial-quote {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--deep);
+      margin-bottom: 28px;
+      opacity: 0.85;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 2px;
+    }
+
+    .author-detail {
+      font-size: 12px;
+      color: var(--deep);
+      opacity: 0.55;
+    }
+
+    /* ===== AGENTS SECTION ===== */
+    .agents-section {
+      background: var(--offwhite);
+      padding: 100px 48px;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    .agent-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid rgba(13, 43, 30, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .agent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(13, 43, 30, 0.1);
+    }
+
+    .agent-photo {
+      height: 240px;
+      overflow: hidden;
+      background: var(--meadow);
+    }
+
+    .agent-photo img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      object-position: center 50%;
+      display: block;
+    }
+
+    .agent-photo-initials {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      opacity: 0.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .agent-photo-deco {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(242, 201, 76, 0.2);
+    }
+
+    .agent-info {
+      padding: 24px;
+    }
+
+    .agent-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 4px;
+    }
+
+    .agent-title {
+      font-size: 13px;
+      color: var(--forest);
+      opacity: 0.75;
+      margin-bottom: 14px;
+    }
+
+    .agent-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(13, 43, 30, 0.06);
+    }
+
+    .agent-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .agent-stat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--forest);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    .agent-stat-num {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    .agent-stat-label {
+      font-size: 13px;
+      color: var(--deep);
+      opacity: 0.5;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--deep);
+      padding: 80px 48px 40px;
+      color: var(--meadow);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand .logo-wordmark {
+      color: var(--yellow);
+    }
+
+    .footer-brand .logo-sub {
+      color: var(--meadow);
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--meadow);
+      opacity: 0.6;
+      margin-top: 20px;
+      max-width: 260px;
+    }
+
+    .footer-col-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--meadow);
+      opacity: 0.5;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--meadow);
+      opacity: 0.7;
+      text-decoration: none;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 40px;
+      border-top: 1px solid rgba(168, 212, 190, 0.1);
+      font-size: 13px;
+      color: var(--meadow);
+      opacity: 0.4;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ===== RESPONSIVENESS ===== */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 120px 24px 60px;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .section {
+        padding: 72px 24px;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intel-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .neigh-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .neigh-card.span-col {
+        grid-row: span 1;
+      }
+
+      .neigh-card {
+        height: 200px;
+      }
+
+      .testimonial-carousel-wrapper {
+        gap: 8px;
+      }
+
+      .agents-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .brand-promise {
+        padding: 80px 24px;
+      }
+
+      .brand-promise-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo-lockup">
+      <span class="logo-wordmark">UNADA</span>
+      <span class="logo-sub">Real Estate</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="sellers.html">Sellers</a></li>
+      <li><a href="#">Buyers</a></li>
+      <li><a href="rentals.html">Rentals</a></li>
+      <li><a href="#how">How it works</a></li>
+      <!-- <li><a href="#neighborhoods">Neighborhoods</a></li> -->
+      <li><a href="#agents">Our team</a></li>
+      <li><a href="#" class="nav-cta">Start your search</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle2"></div>
+
+    <div class="hero-text">
+      <p class="hero-eyebrow">Toronto's most human real estate agency</p>
+      <h1 class="hero-headline">Live somewhere<br>that feels like <em>you</em></h1>
+      <p class="hero-body">We don't start with square footage. We start with the life you want to live — and work
+        backwards to find the home that holds it.</p>
+      <div class="hero-actions">
+        <a href="#how" class="btn-primary">Start your profile</a>
+        <a href="#agents" class="btn-ghost">
+          Meet our agents
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hero-card card-float">
+          <div class="card-float-label">Avg. showings to close</div>
+          <div class="card-float-stat">2.4</div>
+          <div class="card-float-sub">vs. industry avg of 8.1</div>
+        </div>
+        <div class="hero-card card-main">
+          <div class="card-main-photo"></div>
+          <div class="scene-illustration">
+            <div class="scene-window"></div>
+            <div class="scene-plant"></div>
+            <div class="scene-coffee"></div>
+          </div>
+          <div class="card-main-content">
+            <span class="card-badge">Profile matched</span>
+            <div class="card-address">42 Augusta Ave<br>Kensington Market</div>
+            <div class="card-detail">3 bed · 2 bath · $1.1M</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="how">
+    <p class="section-tag reveal">The process</p>
+    <h2 class="section-headline reveal reveal-delay-1">Less guessing. More belonging.</h2>
+    <div class="how-grid">
+      <div class="how-step reveal reveal-delay-1">
+        <div class="how-step-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#0D7A52" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <span class="how-step-number">01</span>
+        <div class="how-step-title">Tell us how you live</div>
+        <p class="how-step-body">A short, thoughtful onboarding — not a form. You describe your life: how you work, who
+          you live with, what a good morning looks like. We translate that into a structured profile before your first
+          meeting.</p>
+      </div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="how-step-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" stroke="#0D7A52" stroke-width="1.5" />
+            <path d="M12 8v4l3 3" stroke="#0D7A52" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="how-step-number">02</span>
+        <div class="how-step-title">We build your ideal home</div>
+        <p class="how-step-body">Your agent reviews an AI-generated property profile before you ever meet. Not a list of
+          filters — an articulate picture of what you actually need, refined together during your first consultation.
+        </p>
+      </div>
+      <div class="how-step reveal reveal-delay-3">
+        <div class="how-step-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#0D7A52" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 22V12h6v10" stroke="#0D7A52" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <span class="how-step-number">03</span>
+        <div class="how-step-title">Fewer showings. Better fit.</div>
+        <p class="how-step-body">Our clients see an average of 2.4 properties before finding theirs. That's not luck —
+          it's what happens when you understand someone's life before you ever open a door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND PROMISE -->
+  <section class="brand-promise">
+    <h2 class="brand-promise-headline reveal">Real estate has forgotten<br>that it's about people.</h2>
+    <p class="brand-promise-sub reveal reveal-delay-1">Every listing is a home someone already has. Every search is a
+      life someone is trying to build. We think that deserves more than a database query.</p>
+    <div class="brand-promise-actions reveal reveal-delay-2">
+      <a href="#" class="btn-yellow">Find your agent</a>
+      <!-- <a href="#how" class="btn-outline-light">See how it works</a> -->
+    </div>
+  </section>
+
+  <!-- LEAD INTELLIGENCE SECTION -->
+  <section class="section intelligence-section" id="intelligence">
+    <p class="section-tag reveal">AI-assisted matching</p>
+    <div class="intel-grid">
+      <div class="intel-mockup reveal">
+        <img src="assets/Lead Detail-client.png" alt="Client lead detail view" />
+      </div>
+
+      <div class="intel-content reveal reveal-delay-1">
+        <p class="section-tag">How we use AI</p>
+        <h2 class="section-headline">Your agent understands you before the first handshake.</h2>
+        <p class="intel-body">Our Lead Intelligence system translates your lifestyle answers into a living profile your
+          agent can read, refine, and act on. It's not a form — it's a conversation that happens before you even meet.
+        </p>
+        <ul class="intel-feature-list">
+          <li>
+            <div class="feature-dot"></div>Complete your profile from your phone, on your schedule
+          </li>
+          <li>
+            <div class="feature-dot"></div>Your agent reviews an AI-generated ideal home picture before you meet
+          </li>
+          <li>
+            <div class="feature-dot"></div>Refine it together during your consultation — the profile updates in real
+            time
+          </li>
+          <li>
+            <div class="feature-dot"></div>Every showing is matched to a clearer picture of what you actually want
+          </li>
+        </ul>
+        <a href="#" class="btn-primary">Start your profile today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEIGHBORHOODS -->
+  <!-- <section class="section neighborhoods" id="neighborhoods">
+    <div class="neigh-header">
+      <div>
+        <p class="section-tag reveal">Where we work</p>
+        <h2 class="section-headline reveal reveal-delay-1">We know these streets.<br>Because we live here too.</h2>
+      </div>
+      <a href="#" class="btn-ghost reveal">
+        View all neighborhoods
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <div class="neigh-grid reveal">
+      <div class="neigh-card span-col">
+        <div class="neigh-bg">
+          <div class="scene-street"></div>
+        </div>
+        <svg class="deco-lines" width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <rect x="5" y="5" width="50" height="50" rx="4" stroke="white" stroke-width="1" />
+          <rect x="15" y="15" width="30" height="30" rx="2" stroke="white" stroke-width="0.5" />
+        </svg>
+        <div class="neigh-inner">
+          <div class="neigh-name">Kensington Market</div>
+          <div class="neigh-sub">Independent, walkable, full of life</div>
+        </div>
+      </div>
+      <div class="neigh-card">
+        <div class="neigh-bg"></div>
+        <div class="neigh-inner">
+          <div class="neigh-name">Leslieville</div>
+          <div class="neigh-sub">Families, cafés, character homes</div>
+        </div>
+      </div>
+      <div class="neigh-card">
+        <div class="neigh-bg"></div>
+        <div class="neigh-inner">
+          <div class="neigh-name">Dundas West</div>
+          <div class="neigh-sub">Creative, connected, growing</div>
+        </div>
+      </div>
+      <div class="neigh-card">
+        <div class="neigh-bg"></div>
+        <div class="neigh-inner">
+          <div class="neigh-name">Carlaw + Pape</div>
+          <div class="neigh-sub">East end character with space</div>
+        </div>
+      </div>
+      <div class="neigh-card">
+        <div class="neigh-bg"></div>
+        <div class="neigh-inner">
+          <div class="neigh-name">Roncesvalles</div>
+          <div class="neigh-sub">Village feel, two stops from everything</div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials">
+    <p class="section-tag reveal">Client stories</p>
+    <h2 class="section-headline reveal reveal-delay-1">People, not transactions.</h2>
+    <div class="google-review-header reveal reveal-delay-2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+          fill="#4285F4" />
+        <path
+          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+          fill="#34A853" />
+        <path
+          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+          fill="#FBBC05" />
+        <path
+          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+          fill="#EA4335" />
+      </svg>
+      <span class="google-rating">5.0</span>
+      <span class="google-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="google-count">60 Google reviews</span>
+    </div>
+    <div class="testimonial-carousel-wrapper reveal reveal-delay-1">
+      <button class="carousel-btn" id="prevBtn" aria-label="Previous reviews">
+        <svg width="18" height="18" fill="none" viewBox="0 0 16 16">
+          <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="reviewTrack">
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"I am beyond impressed by my realtor Jane Kim. She exceeded my expectations as
+              one of the best realtors I have ever dealt with. Jane Kim is beyond professional, patient, kind, sincere
+              and the most honest and understanding realtor I have ever trusted and worked with."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">J</div>
+              <div>
+                <div class="author-name">Juli YLP</div>
+                <div class="author-detail">Google review · a year ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"Jane was the most attentive and responsive realtor I've ever dealt with! We
+              knew our budget and finances were not going to be the easiest to deal with but she fought hard and never
+              gave up on us. I really felt like we had a friend on our side helping us out."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">T</div>
+              <div>
+                <div class="author-name">Theren Poulin</div>
+                <div class="author-detail">Google review · a year ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"Jane Kim is amazing! She helped us find our dream home and made the whole
+              process stress-free. She is very kind, professional, and truly cares about her clients. After working with
+              many realtors before, I can confidently say she is the best realtor in Toronto. 100% recommend her!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <div>
+                <div class="author-name">akil prabhakaran</div>
+                <div class="author-detail">Google review · 7 months ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"Jane Kim is truly the best realtor in Toronto! She is friendly, patient, and
+              sincere, and she helped us find exactly the home we were dreaming of. Jane is honest, professional, and
+              genuinely cares about her clients' happiness."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <div>
+                <div class="author-name">Anjana Asha Sudhan</div>
+                <div class="author-detail">Google review · 7 months ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"It was such a pleasure working with Jane. She's hardworking, organized,
+              patient, disciplined and genuinely trustworthy. She made the whole process of finding a condo
+              hassle-free."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">S</div>
+              <div>
+                <div class="author-name">Sandy G</div>
+                <div class="author-detail">Google review · 6 months ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-quote">"Jane was very helpful in helping us find our first rental condo. She is smart
+              and sincere and brought great ideas that helped us secure the rental unit. She's also a great communicator
+              and has a great sense of the market."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">M</div>
+              <div>
+                <div class="author-name">Major Lazer27</div>
+                <div class="author-detail">Google review · 9 months ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn" id="nextBtn" aria-label="Next reviews">
+        <svg width="18" height="18" fill="none" viewBox="0 0 16 16">
+          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="carousel-footer">
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+    <div class="google-review-footer reveal">
+      <a href="https://www.google.com/search?q=UNADA+Real+Estate+Reviews#lrd=0x75b51356d88c02d:0x5d8a5ef66ddd904,1,,,,"
+        target="_blank" rel="noopener" class="google-review-link">
+        See all 60 reviews on Google
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- AGENTS -->
+  <section class="section agents-section" id="agents">
+    <p class="section-tag reveal">Our team</p>
+    <h2 class="section-headline reveal reveal-delay-1">Diverse minds.<br>One goal: Your perfect home.</h2>
+    <p class="section-body reveal reveal-delay-1">By combining traditional real estate mastery with modern technical
+      expertise, we provide a client experience that is more efficient and results-oriented than the industry standard,
+      yet warm and human.</p>
+    <div class="agents-grid">
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-photo">
+          <img src="assets/jane_profile.jpeg" alt="Jane Kim" />
+        </div>
+        <div class="agent-info">
+          <div class="agent-name">Jane Kim</div>
+          <div class="agent-title">Real Estate Agent</div>
+          <div class="agent-stats">
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">Toronto Real Estate Agent</span>
+            </div>
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">Residential specialist</span>
+            </div>
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">5.0 Google rating · 60 reviews</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-photo">
+          <img src="assets/levi_profile.jpeg" alt="Levi Goh" />
+        </div>
+        <div class="agent-info">
+          <div class="agent-name">Levi Goh</div>
+          <div class="agent-title">AI Product Manager</div>
+          <div class="agent-stats">
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">AI product & UX lead</span>
+            </div>
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">Design Customer's Experience</span>
+            </div>
+            <div class="agent-stat-item">
+              <div class="agent-stat-dot"></div>
+              <span class="agent-stat-label">+4 years in IT Industry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="agent-card reveal reveal-delay-3">
+      <div class="agent-photo" style="background:linear-gradient(135deg,#0D7A52 0%,#0D2B1E 100%)">
+        <div class="agent-photo-initials">TM</div>
+        <div class="agent-photo-deco"></div>
+      </div>
+      <div class="agent-info">
+        <div class="agent-name">Tomás Mendes</div>
+        <div class="agent-title">Condo & first-time buyers</div>
+        <div class="agent-stats">
+          <div><div class="agent-stat-num">112</div><div class="agent-stat-label">Closings</div></div>
+          <div><div class="agent-stat-num">2.2</div><div class="agent-stat-label">Avg showings</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="agent-card reveal">
+      <div class="agent-photo" style="background:linear-gradient(135deg,#E8C4A0 0%,#A8D4BE 100%)">
+        <div class="agent-photo-initials" style="color:var(--deep)">NJ</div>
+        <div class="agent-photo-deco"></div>
+      </div>
+      <div class="agent-info">
+        <div class="agent-name">Naomi James</div>
+        <div class="agent-title">Family homes & upsizing</div>
+        <div class="agent-stats">
+          <div><div class="agent-stat-num">78</div><div class="agent-stat-label">Closings</div></div>
+          <div><div class="agent-stat-num">2.8</div><div class="agent-stat-label">Avg showings</div></div>
+        </div>
+      </div>
+    </div> -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo-lockup">
+          <span class="logo-wordmark">UNADA</span>
+          <span class="logo-sub">Real Estate</span>
+        </a>
+        <p class="footer-tagline">Live somewhere that feels like you. Toronto's most human real estate agency.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Search</div>
+        <ul class="footer-links">
+          <li><a href="sellers.html">Sellers</a></li>
+          <li><a href="#">Buyers</a></li>
+          <li><a href="rentals.html">Rentals</a></li>
+          <!-- <li><a href="#">Start your profile</a></li> -->
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">About Unada</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li>hello@unada.ca</li>
+          <li>647-807-0228</li>
+          <li>8 Hornell St</li>
+          <li>Instagram</li>
+          <li>LinkedIn</li>
+          <li>Youtube</li>
+          <li>TikTok</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Unada Real Estate Inc. Toronto, Canada</span>
+      <span>Privacy · Terms</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Review carousel
+    (function () {
+      const carousel = document.querySelector('.testimonial-carousel');
+      const track = document.getElementById('reviewTrack');
+      const cards = track.querySelectorAll('.testimonial-card');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsContainer = document.getElementById('carouselDots');
+      const gap = 24;
+      let page = 0;
+
+      function getPerPage() {
+        return window.innerWidth <= 900 ? 1 : 3;
+      }
+
+      function getTotalPages() {
+        return Math.ceil(cards.length / getPerPage());
+      }
+
+      function sizeCards() {
+        var perPage = getPerPage();
+        var w = (carousel.offsetWidth - gap * (perPage - 1)) / perPage;
+        cards.forEach(function (c) { c.style.width = w + 'px'; });
+      }
+
+      function buildDots() {
+        dotsContainer.innerHTML = '';
+        var total = getTotalPages();
+        for (var i = 0; i < total; i++) {
+          var dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === page ? ' active' : '');
+          dot.setAttribute('aria-label', 'Go to page ' + (i + 1));
+          (function (idx) { dot.addEventListener('click', function () { goTo(idx); }); })(i);
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateButtons() {
+        prevBtn.disabled = page === 0;
+        nextBtn.disabled = page >= getTotalPages() - 1;
+      }
+
+      function goTo(p) {
+        var perPage = getPerPage();
+        var total = getTotalPages();
+        page = Math.max(0, Math.min(p, total - 1));
+        var cardW = cards[0].offsetWidth + gap;
+        track.style.transform = 'translateX(-' + (page * perPage * cardW) + 'px)';
+        buildDots();
+        updateButtons();
+      }
+
+      prevBtn.addEventListener('click', function () { goTo(page - 1); });
+      nextBtn.addEventListener('click', function () { goTo(page + 1); });
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          sizeCards();
+          if (page >= getTotalPages()) page = getTotalPages() - 1;
+          goTo(page);
+        }, 150);
+      });
+
+      sizeCards();
+      goTo(0);
+    })();
+
+    // Smooth nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.opacity = a.getAttribute('href') === '#' + cur ? '1' : '';
+      });
+    });
+  </script>
+</body>
+
+</html>
