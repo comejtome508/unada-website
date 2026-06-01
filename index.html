@@ -130,6 +130,116 @@
       border-radius: 40px;
     }
 
+    /* ===== HAMBURGER ===== */
+    .nav-mobile {
+      display: none;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-mobile-cta {
+      background: var(--forest);
+      color: var(--offwhite);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: 40px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .hamburger-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--deep);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+
+    .hamburger-btn.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-btn.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--offwhite);
+      border-bottom: 1px solid rgba(13, 43, 30, 0.08);
+      padding: 20px 24px 28px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-drawer.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-drawer a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--deep);
+      text-decoration: none;
+      opacity: 0.75;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(13, 43, 30, 0.06);
+      transition: opacity 0.2s;
+    }
+
+    .nav-drawer a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-drawer a:hover {
+      opacity: 1;
+    }
+
+    .nav-drawer .drawer-cta {
+      margin-top: 16px;
+      background: var(--forest);
+      color: var(--offwhite);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 0;
+      border-radius: 40px;
+      text-align: center;
+      opacity: 1;
+      border-bottom: none;
+    }
+
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
@@ -1351,6 +1461,14 @@
         display: none;
       }
 
+      .nav-mobile {
+        display: flex;
+      }
+
+      .nav-drawer {
+        display: flex;
+      }
+
       .hero {
         grid-template-columns: 1fr;
         padding: 120px 24px 60px;
@@ -1427,7 +1545,25 @@
       <li><a href="#agents">Our team</a></li>
       <li><a href="#" class="nav-cta">Start your search</a></li>
     </ul>
+    <div class="nav-mobile">
+      <a href="#" class="nav-mobile-cta" id="mobileCta">Start your search</a>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <a href="sellers.html">Sellers</a>
+    <a href="#">Buyers</a>
+    <a href="rentals.html">Rentals</a>
+    <a href="#how">How it works</a>
+    <a href="#agents">Our team</a>
+    <a href="#" class="drawer-cta" id="drawerCta">Start your search</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1988,22 +2124,63 @@
         a.style.opacity = a.getAttribute('href') === '#' + cur ? '1' : '';
       });
     });
-    document.querySelector('.nav-cta').addEventListener('click', async function (e) {
-      e.preventDefault();
-      this.textContent = 'Loading...';
-      this.style.pointerEvents = 'none';
+    // Hamburger menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navDrawer = document.getElementById('navDrawer');
+    let drawerOpen = false;
 
+    function toggleDrawer(open) {
+      drawerOpen = open;
+      hamburgerBtn.classList.toggle('open', open);
+      hamburgerBtn.setAttribute('aria-expanded', open);
+      navDrawer.classList.toggle('open', open);
+      navDrawer.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburgerBtn.addEventListener('click', () => toggleDrawer(!drawerOpen));
+
+    // Close drawer when a link inside it is clicked
+    navDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleDrawer(false));
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', (e) => {
+      if (drawerOpen && !navDrawer.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        toggleDrawer(false);
+      }
+    });
+
+    // Onboarding CTA handler (desktop + mobile + drawer)
+    async function startSearch(btn) {
+      const original = btn.textContent;
+      btn.textContent = 'Loading...';
+      btn.style.pointerEvents = 'none';
       try {
-        var res = await fetch('https://unada-studio-production.vercel.app/api/v1/start', {
-          method: 'POST'
-        });
-        var data = await res.json();
+        const res = await fetch('https://unada-studio-production.vercel.app/api/v1/start', { method: 'POST' });
+        const data = await res.json();
         window.location.href = data.onboardingUrl;
       } catch (err) {
-        this.textContent = 'Start your search';
-        this.style.pointerEvents = 'auto';
+        btn.textContent = original;
+        btn.style.pointerEvents = 'auto';
         console.error('Failed to start session:', err);
       }
+    }
+
+    document.querySelector('.nav-cta').addEventListener('click', function (e) {
+      e.preventDefault();
+      startSearch(this);
+    });
+
+    document.getElementById('mobileCta').addEventListener('click', function (e) {
+      e.preventDefault();
+      startSearch(this);
+    });
+
+    document.getElementById('drawerCta').addEventListener('click', function (e) {
+      e.preventDefault();
+      startSearch(this);
     });
   </script>
 </body>
