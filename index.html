@@ -1988,6 +1988,23 @@
         a.style.opacity = a.getAttribute('href') === '#' + cur ? '1' : '';
       });
     });
+    document.querySelector('.nav-cta').addEventListener('click', async function (e) {
+      e.preventDefault();
+      this.textContent = 'Loading...';
+      this.style.pointerEvents = 'none';
+
+      try {
+        var res = await fetch('https://unada-studio-production.vercel.app/api/v1/start', {
+          method: 'POST'
+        });
+        var data = await res.json();
+        window.location.href = data.onboardingUrl;
+      } catch (err) {
+        this.textContent = 'Start your search';
+        this.style.pointerEvents = 'auto';
+        console.error('Failed to start session:', err);
+      }
+    });
   </script>
 </body>
 
