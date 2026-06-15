@@ -2013,7 +2013,7 @@
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li>hello@unada.ca</li>
+          <li>unadarealestate@gmail.com</li>
           <li>647-807-0228</li>
           <li>8 Hornell St</li>
           <li><a href="https://www.instagram.com/unada.realestate/">Instagram</a></li>
@@ -2158,7 +2158,7 @@
       btn.textContent = 'Loading...';
       btn.style.pointerEvents = 'none';
       try {
-        const res = await fetch('https://unada-studio-production.vercel.app/api/v1/start', { method: 'POST' });
+        const res = await fetch('https://unada-studio-production.vercel.app', { method: 'POST' });
         const data = await res.json();
         window.location.href = data.onboardingUrl;
       } catch (err) {
