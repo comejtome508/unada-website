@@ -2158,7 +2158,7 @@
       btn.textContent = 'Loading...';
       btn.style.pointerEvents = 'none';
       try {
-        const res = await fetch('https://unada-studio-production.vercel.app', { method: 'POST' });
+        const res = await fetch('https://unada-studio-production.vercel.app/api/v1/start', { method: 'POST' });
         const data = await res.json();
         window.location.href = data.onboardingUrl;
       } catch (err) {
