@@ -48,10 +48,52 @@
       overflow-x: hidden;
     }
 
+    /* ===== STUDIO BAR ===== */
+    .studio-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 101;
+      background: var(--forest);
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .studio-bar-text {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(247, 244, 238, 0.85);
+      letter-spacing: 0.2px;
+    }
+
+    .studio-bar-btn {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest);
+      background: var(--offwhite);
+      border: none;
+      border-radius: 40px;
+      padding: 4px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .studio-bar-btn:hover {
+      opacity: 0.85;
+    }
+
     /* ===== NAV ===== */
     nav {
       position: fixed;
-      top: 0;
+      top: 36px;
       left: 0;
       right: 0;
       z-index: 100;
@@ -189,7 +231,7 @@
     .nav-drawer {
       display: none;
       position: fixed;
-      top: 64px;
+      top: 100px; /* 36px bar + 64px nav */
       left: 0;
       right: 0;
       background: var(--offwhite);
@@ -247,7 +289,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 120px 48px 80px;
+      padding: 156px 48px 80px; /* 120px + 36px bar */
       position: relative;
       overflow: hidden;
     }
@@ -1471,7 +1513,11 @@
 
       .hero {
         grid-template-columns: 1fr;
-        padding: 120px 24px 60px;
+        padding: 156px 24px 60px; /* 120px + 36px bar */
+      }
+
+      .studio-bar-text {
+        display: none;
       }
 
       .hero-visual {
@@ -1529,6 +1575,12 @@
 </head>
 
 <body>
+
+  <!-- STUDIO BAR -->
+  <div class="studio-bar">
+    <span class="studio-bar-text">Already an Unada Studio member?</span>
+    <a href="https://unada-studio-production.vercel.app/login" class="studio-bar-btn" target="_blank" rel="noopener">Log in</a>
+  </div>
 
   <!-- NAV -->
   <nav>
